@@ -26,12 +26,12 @@ endif
 CC ?= gcc
 PREFIX ?= /usr/local
 CDOK_CFLAGS = -O2 -Wall -DGIT_VERSION='"$(GIT_COMMIT_NAME)$(GIT_DIRTY)"' \
-	      -DBUILD_DATE='"$(BUILD_DATE)"'
+	      -DBUILD_DATE='"$(BUILD_DATE)"' -g -pg
 
 all: cdok
 
 cdok: main.o cdok.o parser.o printer.o solver.o generator.o
-	$(CC) -o $@ $^
+	$(CC) -g -pg -o $@ $^
 
 clean:
 	rm -f cdok
